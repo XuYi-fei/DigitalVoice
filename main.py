@@ -1,8 +1,6 @@
 import matplotlib.pyplot as plt
-from NoiseUtil import Noise
 from AudioUtil import AudioUtils
 from WienerUtil import Wiener
-import librosa
 from SubFilterUtil import SubFilterUtil
 # 显示中文
 plt.rcParams['font.sans-serif'] = ['SimHei']
@@ -61,12 +59,6 @@ if __name__ == "__main__":
     data, fs = audio_util.read_clean_data()
     noisy_data, noisy_fs = audio_util.read_noisy_data()
     noise_data, noise_fs = audio_util.read_noise_data()
-
-    # 生成噪声
-    # noise_util = Noise()
-    # noise_util.generateGaussianNoise(N=len(data), order_filter=256, fs=fs)
-    # noisy_data = noise_util.addGaussianNoise(data=data)
-    # AudioUtils.write_data(noisy_data, fs, "noisy_data.wav")
 
     plt.title("音频频谱滤波结果")
     draw_plot(data, 512, fs, "原始无噪音频")
