@@ -50,10 +50,10 @@
 维纳滤波器中，假设输入信号为y(n)，干净信号和增强信号的差值为e(n)。设计滤波器h(n)，使得干净信号和增强信号的差值e(n)均方误差最小。按照该方法设计的滤波器则称之为维纳滤波器。具体方法如下：
 
 - 对时域进行傅里叶变换，得到频域。由于傅里叶变换采用的是正交基，因此假设各个频段之间互不相关 可以针对每个频点k进行分析。
-  $\hat{X}(\omega)=H(\omega)*Y(\omega)$			$\hat{X}(\omega_k)=H(\omega_k)*Y(\omega_k)$	
+  $\hat{X}(\omega)=H(\omega)*Y(\omega)$			$\hat{X}(\omega_k)=H(\omega_k)\*Y(\omega_k)$	
 
 - 误差如下：
-  $E(\omega_k)=X(\omega_k)-\hat{X}(\omega_k)=X(\omega_k)-H(\omega_k)*Y(\omega_k)$
+  $E(\omega_k)=X(\omega_k)-\hat{X}(\omega_k)=X(\omega_k)-H(\omega_k)\*Y(\omega_k)$
   目的是让均方误差**E**$[|E(\omega_k)|^2]$最小，令        $P_{yy}(\omega_k)=$**E**$[|Y(w_k)|^2]$，     $P_{xy}(\omega_k)=$**E**$[Y(w_k)X(\omega_k)^*]$，
 
   则求导得最终结果**$H(\omega_k)=\frac{P_{xy}^*(\omega_k)}{P_{yy}(\omega_k)}$** 
@@ -66,11 +66,11 @@
 
 $y(n)=x(n)+n(n)$       $Y(\omega_k)=X(\omega_k)+N(\omega_k)$
 
-$P_{xy}^*(\omega_k)=\rm{E}[X(\omega_k)(X(\omega_k)+N(\omega_k))^*]=\rm{E}[X(\omega_k)X^*(\omega_k)]+\rm{E}[X(\omega_k)N^*(\omega_k)]$
+$ P_{xy}^\*(\omega_k)=\rm{E}[X(\omega_k)(X(\omega_k)+N(\omega_k))^\*]=\rm{E}[X(\omega_k)X^\*(\omega_k)]+\rm{E}[X(\omega_k)N^\*(\omega_k)] $
 
 - **假设X与N互不相关，且N的期望值为0，那么：**
 
-  $P_{xy}^*(\omega_k)=P_{xx}^*(\omega_k)$
+  $P_{xy}^\*(\omega_k)=P_{xx}^\*(\omega_k)$
 
   **同理可得：**
 
@@ -93,13 +93,13 @@ $y(n)=x(n)+e(n)$       $Y(\omega)=X(\omega)+E(\omega)$
 
 则$|\hat{X}(\omega)|=|Y(\omega)|-|E(\omega)|$，注意$|\hat{X}(\omega)|$在小于0时强制置为0
 
-而$\hat{X}(\omega)=|\hat{X}(w)|e^{j{\phi}_Y(\omega)}$
+而$\hat{X}(\omega)=|\hat{X}(w)|e^{j{\phi}\_Y(\omega)}$
 
 - 通常认为噪声为加性噪声，取语音开始的前一段作为噪声
-
 - 谱减法实现过程
   - 将输入语音分帧进行短时傅里叶变换(STFT)
-  - 取前N帧进行噪声估计($E(\omega)$)
+  - 取前N帧进行噪声估计
+  $E(\omega)$
   - 谱减操作
   - ISTFT还原获取干净语音
 
@@ -126,7 +126,7 @@ $y(n)=x(n)+e(n)$       $Y(\omega)=X(\omega)+E(\omega)$
 
 维纳滤波的应用情况较为广泛，如下为本实验中所验证的其中一种应用背景：
 
-- 如果**已知噪声的某些分布特性，**可以通过认为向干净语音加噪声的方法，获取训练得到的维纳滤波器，用得到的滤波器进行滤波。
+- 如果已知噪声的某些分布特性，可以通过认为向干净语音加噪声的方法，获取训练得到的维纳滤波器，用得到的滤波器进行滤波。
 
   该情况对应实验代码中的`demo.py`和`main.py`中使用`Wiener`类进行的滤波处理，`demo.py`中使用的带噪音频为已知干净音频，为其添加指定频段的白噪声得到，而`main.py`中则加入的是全频带的白噪声。
 
@@ -168,13 +168,13 @@ $y(n)=x(n)+e(n)$       $Y(\omega)=X(\omega)+E(\omega)$
 
 在实现第一部分的实验目的时需要引入人工噪声，有关噪声的参数设置为：
 
-- $f_{low}（噪声最低频率）= 2400Hz$
+- $$f_{low}（噪声最低频率）= 2400Hz$$
 - $f_{high}（噪声最高频率）= 3200Hz$
 - snr = 5
 
 有关维纳滤波器的参数设置如下：
 
-- N~FFT~（傅里叶所选择的序列长度）= 512
+- $N_{FFT}(傅里叶所选择的序列长度)=512$
 - $\alpha=1$   $\beta=3$
 - $N_{frame-shift-length}（帧移长度）= 256$
 - $N_{window-length}（窗长）= 512$
@@ -183,7 +183,7 @@ $y(n)=x(n)+e(n)$       $Y(\omega)=X(\omega)+E(\omega)$
 
 - $N_{FFT}（傅里叶所选择的序列长度）= 512$
 - $N_{frame-shift-length}（帧移长度）= 256$
-- $\alpha = 4$     $\beta=0.001$     $\gamma = 1$    $k=1$
+- $\alpha=4$     $\beta=0.001$     $\gamma = 1$    $k=1$
 
 ​     其他还包括有关数据的读入等相关配置，与实验效果无关，就不再列举
 
