@@ -156,7 +156,7 @@ $y(n)=x(n)+e(n)$       $Y(\omega)=X(\omega)+E(\omega)$
 
 ​    **具体的代码结构可见如下图：**
 
-![](imgs/pic6.png)
+![](../imgs/pic6.png)
 
 ​	其中resources和output文件夹包含的内容均为wav格式的音频文件，用于读取输入数据或者存入输出数据。
 
@@ -168,21 +168,21 @@ $y(n)=x(n)+e(n)$       $Y(\omega)=X(\omega)+E(\omega)$
 
 在实现第一部分的实验目的时需要引入人工噪声，有关噪声的参数设置为：
 
-- f~low~（噪声最低频率）= 2400Hz
-- f~high~（噪声最高频率）= 3200Hz
+- $f_{low}（噪声最低频率）= 2400Hz$
+- $f_{high}（噪声最高频率）= 3200Hz$
 - snr = 5
 
 有关维纳滤波器的参数设置如下：
 
 - N~FFT~（傅里叶所选择的序列长度）= 512
 - $\alpha=1$   $\beta=3$
-- N~frame-shift-length~（帧移长度）= 256
-- N~window-length~（窗长）= 512
+- $N_{frame-shift-length}（帧移长度）= 256$
+- $N_{window-length}（窗长）= 512$
 
 有关加入了超减法的维纳滤波器的参数设置如下：
 
-- N~FFT~（傅里叶所选择的序列长度）= 512
-- N~frame-shift-length~（帧移长度）= 256
+- $N_{FFT}（傅里叶所选择的序列长度）= 512$
+- $N_{frame-shift-length}（帧移长度）= 256$
 - $\alpha = 4$     $\beta=0.001$     $\gamma = 1$    $k=1$
 
 ​     其他还包括有关数据的读入等相关配置，与实验效果无关，就不再列举
@@ -293,7 +293,9 @@ $y(n)=x(n)+e(n)$       $Y(\omega)=X(\omega)+E(\omega)$
 
   如下为对音频处理前后的语谱图结果。
 
-  <img src="imgs/pic2.png" style="zoom: 50%;" /><img src="../../数字语音处理/imgs/pic3.png" style="zoom:50%;" />
+  ![pic2](imgs/pic2.png)
+
+  <img src="imgs/pic2.png" style="zoom: 50%;" /><img src="imgs/pic3.png" style="zoom:50%;" />
 
   由加噪后音频的语谱图可以明显看出在原始音频上增加了一个指定频带的噪声，在语谱图中表现为多出一条横向的频带；在维纳滤波后可以看出将噪声所在的频带被全部滤除，但是缺点是会使得频带不够平滑不够连续，出现了新的噪声；最后在使用了超减法与维纳滤波的混合方法后既去除了噪声所在频带部分的信号，又进行了一定程度的平滑，但也损失了较多能量，对滤波后的音频序列进行放大即可。
 
@@ -303,7 +305,7 @@ $y(n)=x(n)+e(n)$       $Y(\omega)=X(\omega)+E(\omega)$
 
   如下为对音频处理前后的语谱图结果
 
-  <img src="../../数字语音处理/imgs/pic4.png" style="zoom:50%;" /><img src="imgs/pic5.png" style="zoom:50%;" />
+  <img src="imgs/pic4.png" style="zoom:50%;" /><img src="imgs/pic5.png" style="zoom:50%;" />
 
   由于所加噪声为全频段的高斯噪声，因此观察加噪后的语谱图可以发现在全频段的语音信号强度均有增强；维纳滤波则是在一定程度上对高斯噪声进行了去除；超减法+维纳滤波则在去噪的同时保持了较好的平滑效果使音质保持的较好。
 
