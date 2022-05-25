@@ -174,7 +174,7 @@ $y(n)=x(n)+e(n)$       $Y(\omega)=X(\omega)+E(\omega)$
     
     **具体的代码结构可见如下图：**
 
-![](imgs/pic6-16534426009201.png)
+![](imgs/pic6.png)
 
 	其中resources和output文件夹包含的内容均为wav格式的音频文件，用于读取输入数据或者存入输出数据。
 	
