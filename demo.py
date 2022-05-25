@@ -36,7 +36,7 @@ def wiener_subproc_process(data_to_process, data_fs):
     wiener.genFilter(noise_data, filtered_data)
     output_data = wiener.waveFiltering(data_to_process)
     AudioUtils.write_data(output_data, data_fs, "demo_wiener_subproc_filtered_data.wav")
-    draw_plot(filtered_data, 512, data_fs, "超减法+维纳滤波")
+    draw_plot(filtered_data, 512, data_fs, "谱减法+维纳滤波")
 
 
 def wiener_process(pure_noise, data_to_process, clean_data, data_fs):
